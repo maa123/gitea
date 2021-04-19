@@ -46,9 +46,9 @@ each(@fonts, {
   :root {
     /* Special handling for Firefox on Windows/Linux */
     @supports (-moz-appearance:none) {
-      --fonts-default-override@{locale}: ~"var(--fonts-proportional), system-ui@{locale}";
+      --fonts-default-override@{locale}: ~"'JetBrains Mono', var(--fonts-proportional), system-ui@{locale}";
     }
-    --fonts-default-override@{locale}: ~"system-ui@{locale}, var(--fonts-proportional)";
+    --fonts-default-override@{locale}: ~"'JetBrains Mono', system-ui@{locale}, var(--fonts-proportional)";
   }
 });
 
