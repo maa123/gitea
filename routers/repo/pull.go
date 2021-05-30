@@ -201,7 +201,7 @@ func ForkPost(ctx *context.Context) {
 		}
 		repo, has := models.HasForkedRepo(ctxUser.ID, traverseParentRepo.ID)
 		if has {
-			ctx.Redirect(setting.AppSubURL + "/" + ctxUser.Name + "/" + repo.Name)
+			ctx.Redirect(ctxUser.HomeLink() + "/" + repo.Name)
 			return
 		}
 		if !traverseParentRepo.IsFork {
@@ -243,7 +243,7 @@ func ForkPost(ctx *context.Context) {
 	}
 
 	log.Trace("Repository forked[%d]: %s/%s", forkRepo.ID, ctxUser.Name, repo.Name)
-	ctx.Redirect(setting.AppSubURL + "/" + ctxUser.Name + "/" + repo.Name)
+	ctx.Redirect(ctxUser.HomeLink() + "/" + repo.Name)
 }
 
 func checkPullInfo(ctx *context.Context) *models.Issue {
@@ -518,6 +518,8 @@ func PrepareViewPullInfo(ctx *context.Context, issue *models.Issue) *git.Compare
 		ctx.ServerError("GetCompareInfo", err)
 		return nil
 	}
+
+	ctx.Data["PullRequestWorkInProgressPrefixes"] = setting.Repository.PullRequest.WorkInProgressPrefixes
 
 	if pull.IsWorkInProgress() {
 		ctx.Data["IsPullWorkInProgress"] = true

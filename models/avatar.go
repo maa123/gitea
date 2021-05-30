@@ -32,7 +32,7 @@ func DefaultAvatarLink() string {
 		return ""
 	}
 
-	u.Path = path.Join(u.Path, "/img/avatar_default.png")
+	u.Path = path.Join(u.Path, "/assets/img/avatar_default.png")
 	return u.String()
 }
 
@@ -44,7 +44,7 @@ const DefaultAvatarSize = -1
 const DefaultAvatarPixelSize = 28
 
 // AvatarRenderedSizeFactor is the factor by which the default size is increased for finer rendering
-const AvatarRenderedSizeFactor = 2
+const AvatarRenderedSizeFactor = 4
 
 // HashEmail hashes email address to MD5 string.
 // https://en.gravatar.com/site/implement/hash/
